@@ -1,0 +1,24 @@
+version: "3"
+services: 
+  mongo-instance:
+    container_name: mongo-instance
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - //c/dockerMV/mongodb/data/db:/data/db
+      # - db-persist:/data/db
+    networks:
+      - mongodb-network
+
+# volumes: 
+#   db-persist: 
+#     driver: "local"
+#     driver_opts:
+#       type: none
+#       device: //c/data/db
+#       o: bind
+
+networks:
+  mongodb-network: {}

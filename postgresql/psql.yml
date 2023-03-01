@@ -1,0 +1,33 @@
+# Use postgres/example user/password credentials
+version: "3"
+services:
+  psql-instance:
+    container_name: psql-instance
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - //c/dockerMV/postgresql/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    networks:
+      - psql-network
+  
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - //c/dockerMV/pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    networks:
+      - psql-network
+
+networks:
+  psql-network: {}

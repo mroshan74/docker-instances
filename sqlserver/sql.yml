@@ -1,0 +1,22 @@
+version: "3"
+services:
+  sql-instance:
+    container_name: sql-instance
+    image: mariadb:10.6
+    restart: always
+    volumes:    
+      - //c/dockerMV/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: securepassword
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin
+    restart: always
+    depends_on: 
+      - sql-instance
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=sql-instance
