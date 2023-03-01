@@ -12,6 +12,8 @@ docker compose -f sql.yml down
 
 ## Login creds
 &NewLine;
+| Input | Value |
+| ------ | ------ |
 | server | db instance name like db, sql-instance ... |
 | username | root |
 | password | [MYSQL_ROOT_PASSWORD] |
